@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:text="INSERT SPLASH SCREEN HERE!" />
+
+    <Button
+        android:id="@+id/splash_button_user_selection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Selection Screen" />
+
+
+</LinearLayout>

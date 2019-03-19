@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SpellTest</string>
+    <string name="title_activity_user_selection">User Selection</string>
+    <string name="title_activity_word_list_chooser">Word List Chooser</string>
+</resources>

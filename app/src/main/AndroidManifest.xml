@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication">
+    <uses-sdk android:minSdkVersion="22"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.example.SpellTest.TestStatsActivity"></activity>
+        <activity android:name="com.example.SpellTest.TesterActivity" />
+        <activity android:name="com.example.SpellTest.WordListBuilderActivity" />
+        <activity
+            android:name="com.example.SpellTest.WordListChooserActivity"
+            android:label="@string/title_activity_word_list_chooser"
+            android:parentActivityName="com.example.SpellTest.UserSelectionActivity"  >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.SpellTest.UserSelectionActivity" />
+        </activity>
+        <activity android:name="com.example.SpellTest.UserStatsActivity" />
+        <activity
+            android:name="com.example.SpellTest.UserSelectionActivity"
+            android:label="@string/title_activity_user_selection" />
+        <activity android:name="com.example.SpellTest.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
