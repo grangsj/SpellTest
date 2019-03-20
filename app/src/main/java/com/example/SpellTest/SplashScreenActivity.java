@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
     };
 
-    private static final int SPLASH_SCREEN_DURATION = 1000;  //Duration of splash screen (in milliseconds).
+    private static final int SPLASH_SCREEN_DURATION = 3000;  //Duration of splash screen (in milliseconds).
 
     //Called when Splash screen is first displayed.  Note that the splash screen is built as a theme, so
     //we don't need a layout here - just going to show the theme.

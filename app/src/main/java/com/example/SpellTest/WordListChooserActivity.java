@@ -24,6 +24,7 @@ public class WordListChooserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(WordListChooserActivity.this, UserSelectionActivity.class);
                 startActivity(intent);
+                finish();    //Prevents user from coming back to this screen via back button
             }
         });
 
