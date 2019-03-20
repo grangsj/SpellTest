@@ -25,7 +25,11 @@
         <activity
             android:name="com.example.SpellTest.UserSelectionActivity"
             android:label="@string/title_activity_user_selection" />
-        <activity android:name="com.example.SpellTest.SplashScreenActivity">
+        <activity
+            android:name="com.example.SpellTest.SplashScreenActivity"
+            android:theme="@style/SplashTheme">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
