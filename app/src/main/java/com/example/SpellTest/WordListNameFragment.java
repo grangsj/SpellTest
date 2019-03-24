@@ -13,7 +13,8 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 
-public class WordListNameFragment extends AppCompatDialogFragment {
+public class WordListNameFragment extends AppCompatDialogFragment
+            implements DialogInterface.OnClickListener {
 
     private TextView mListName;
     private DialogListener mListener;
@@ -51,20 +52,9 @@ public class WordListNameFragment extends AppCompatDialogFragment {
         builder.setView(view);
         mListName = view.findViewById(R.id.word_list_name);
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        builder.setPositiveButton(android.R.string.ok, this);
+        builder.setNegativeButton(android.R.string.cancel, this);
 
-
-                Objects.SpellingList spellingList = new Objects.SpellingList(DataStore.DEFAULT_ID,
-                        mListName.getText().toString(),
-                        mUserId);
-                DataStore data = DataStore.getDataStore(getActivity().getApplicationContext());
-                data.addSpellingList(spellingList);
-
-                if (mListener != null) mListener.onDialogPositiveClick();
-            }
-        });
 
 
         builder.setTitle(R.string.dialog_new_user);
@@ -78,6 +68,21 @@ public class WordListNameFragment extends AppCompatDialogFragment {
 
     public void setDialogListener (DialogListener listener){
         mListener = listener;
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+        if (which == DialogInterface.BUTTON_POSITIVE) {
+            Objects.SpellingList spellingList = new Objects.SpellingList(DataStore.DEFAULT_ID,
+                    mListName.getText().toString(),
+                    mUserId);
+            DataStore data = DataStore.getDataStore(getActivity().getApplicationContext());
+            data.addSpellingList(spellingList);
+
+            if (mListener != null) mListener.onDialogPositiveClick();
+        }
+
     }
 }
 

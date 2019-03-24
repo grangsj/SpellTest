@@ -13,7 +13,8 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 
-public class UserNameFragment extends AppCompatDialogFragment {
+public class UserNameFragment extends AppCompatDialogFragment
+            implements DialogInterface.OnClickListener {
 
     private TextView mFirstName;
     private TextView mLastName;
@@ -34,19 +35,8 @@ public class UserNameFragment extends AppCompatDialogFragment {
         mFirstName = view.findViewById(R.id.first_name);
         mLastName = view.findViewById(R.id.last_name);
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-
-                Objects.User user = new Objects.User(DataStore.DEFAULT_ID, mFirstName.getText().toString(), mLastName.getText().toString());
-                DataStore data = DataStore.getDataStore(getActivity().getApplicationContext());
-                data.addUser(user);
-
-                if (mListener != null) mListener.onDialogPositiveClick();
-            }
-        });
-
+        builder.setPositiveButton(android.R.string.ok, this);
+        builder.setNegativeButton(android.R.string.cancel, this);
 
         builder.setTitle(R.string.dialog_new_user);
 
@@ -59,5 +49,19 @@ public class UserNameFragment extends AppCompatDialogFragment {
 
     public void setDialogListener (DialogListener listener){
         mListener = listener;
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+        if (which == DialogInterface.BUTTON_POSITIVE) {
+
+            Objects.User user = new Objects.User(DataStore.DEFAULT_ID, mFirstName.getText().toString(), mLastName.getText().toString());
+            DataStore data = DataStore.getDataStore(getActivity().getApplicationContext());
+            data.addUser(user);
+
+            if (mListener != null) mListener.onDialogPositiveClick();
+        }
+
     }
 }

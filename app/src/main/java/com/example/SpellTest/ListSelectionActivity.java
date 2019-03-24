@@ -91,18 +91,18 @@ public class ListSelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_selection);
+        setContentView(R.layout.activity_word_list_chooser);
 
         //Get the user id (send from the UserSelectionActivity class)
         mUserId = getIntent().getIntExtra(EXTRA_USER_ID, DataStore.DEFAULT_ID);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.user_recycler_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.list_chooser_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mAdapter = new ListSelectionActivity.ListDataAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
 
-        FloatingActionButton fab = findViewById(R.id.user_add_button);
+        FloatingActionButton fab = findViewById(R.id.list_add_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
