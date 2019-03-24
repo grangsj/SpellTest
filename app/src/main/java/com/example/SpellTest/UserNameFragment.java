@@ -6,22 +6,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.app.DialogFragment;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
 
-public class NewUserFragment extends DialogFragment {
-    public interface UserDialogListener {
-        public void onDialogPositiveClick();
-    }
-    private static final int DEFAULT_USER_ID = -1;
+public class UserNameFragment extends AppCompatDialogFragment {
 
     private TextView mFirstName;
     private TextView mLastName;
-    private UserDialogListener mListener;
+    private DialogListener mListener;
 
 
     @NonNull
@@ -43,7 +39,7 @@ public class NewUserFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
 
 
-                Objects.User user = new Objects.User(DEFAULT_USER_ID, mFirstName.getText().toString(), mLastName.getText().toString());
+                Objects.User user = new Objects.User(DataStore.DEFAULT_ID, mFirstName.getText().toString(), mLastName.getText().toString());
                 DataStore data = DataStore.getDataStore(getActivity().getApplicationContext());
                 data.addUser(user);
 
@@ -61,7 +57,7 @@ public class NewUserFragment extends DialogFragment {
         return dialog;
     }
 
-    public void setDialogListener (UserDialogListener listener){
+    public void setDialogListener (DialogListener listener){
         mListener = listener;
     }
 }

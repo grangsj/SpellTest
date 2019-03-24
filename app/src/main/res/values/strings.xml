@@ -5,6 +5,7 @@
     <string name="dialog_new_user">New User Details</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
+    <string name="word_list_name">Name of word list</string>
 
 
 </resources>

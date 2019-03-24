@@ -19,7 +19,7 @@ public class WordListBuilderActivity extends AppCompatActivity {
         listChooserButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WordListBuilderActivity.this, WordListChooserActivity.class);
+                Intent intent = new Intent(WordListBuilderActivity.this, ListSelectionActivity.class);
                 startActivity(intent);
                 finish();    //Prevents user from coming back to this screen via back button
             }

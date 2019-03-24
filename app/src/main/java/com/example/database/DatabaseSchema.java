@@ -45,10 +45,11 @@ public class DatabaseSchema {
     }
 
     public static final class WordTable {
-        public static final String NAME = "WORD";
+        public static final String NAME = "word";
 
         public static final class Cols {
             public static final String ID = "word_id";
+            public static final String LIST_ID = "list_id";
             public static final String SPELLING = "word_spelling";
             public static final String DEFINITION = "definition";
             public static final String EXAMPLE_SENTENCE = "example_sentence";
@@ -63,16 +64,6 @@ public class DatabaseSchema {
         public static final class Cols {
             public static final String ID = "word_stat_id";
             public static final String DIFFICULTY = "difficulty";
-        }
-    }
-
-    public static final class SpellingListWordTable {
-        public static final String NAME = "spellingListWord";
-
-        public static final class Cols {
-            public static final String ID = "spelling_list_word";
-            public static final String WORD_ID = "word_id";
-            public static final String SPELLING_LIST_ID = "spelling_list_id";
         }
     }
 

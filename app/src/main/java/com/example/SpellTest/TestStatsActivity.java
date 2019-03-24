@@ -20,7 +20,7 @@ public class TestStatsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TestStatsActivity.this, WordListChooserActivity.class);
+                Intent intent = new Intent(TestStatsActivity.this, ListSelectionActivity.class);
                 startActivity(intent);
             }
         });

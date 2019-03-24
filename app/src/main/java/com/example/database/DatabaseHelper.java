@@ -45,13 +45,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + WordTable.NAME + "(" +
                 WordTable.Cols.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                WordTable.Cols.LIST_ID + " INTEGER, " +
                 WordTable.Cols.SPELLING + " TEXT, " +
                 WordTable.Cols.DEFINITION + " TEXT, " +
                 WordTable.Cols.EXAMPLE_SENTENCE + " TEXT, " +
                 WordTable.Cols.DIFFICULTY_ID + " INTEGER, " +
                 WordTable.Cols.TYPE + " TEXT, " +
                 "FOREIGN KEY("+WordTable.Cols.DIFFICULTY_ID + ") " +
-                "REFERENCES " + DifficultyTable.NAME + "(" +  DifficultyTable.Cols.ID +")" +
+                "REFERENCES " + DifficultyTable.NAME + "(" +  DifficultyTable.Cols.ID +"), " +
+                        "FOREIGN KEY("+WordTable.Cols.LIST_ID + ") " +
+                        "REFERENCES " + SpellingListTable.NAME + "(" +  SpellingListTable.Cols.ID +")" +
                 ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + WordStatTable.NAME + "(" +
@@ -72,16 +75,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "REFERENCES " + UserTable.NAME + "(" +  UserTable.Cols.ID +"), " +
                 "FOREIGN KEY(" +SpellingListTable.Cols.DIFFICULTY_ID + ") " +
                 "REFERENCES " + DifficultyTable.NAME + "(" +  DifficultyTable.Cols.ID +")" +
-                ")");
-
-        sqLiteDatabase.execSQL("CREATE TABLE " + SpellingListWordTable.NAME + "(" +
-                SpellingListWordTable.Cols.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                SpellingListWordTable.Cols.WORD_ID + " INTEGER, " +
-                SpellingListWordTable.Cols.SPELLING_LIST_ID + " INTEGER, " +
-                "FOREIGN KEY(" + SpellingListWordTable.Cols.WORD_ID + ") " +
-                "REFERENCES " + WordTable.NAME + "(" +  WordTable.Cols.ID +"), " +
-                "FOREIGN KEY(" + SpellingListWordTable.Cols.SPELLING_LIST_ID + ") " +
-                "REFERENCES " + SpellingListTable.NAME + "(" +  SpellingListTable.Cols.ID +")" +
                 ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + UserWordStatTable.NAME + "(" +

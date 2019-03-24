@@ -12,7 +12,17 @@ public class Objects {
             this.firstName = firstName;
             this.lastName = lastName;
         }
+    }
 
+    public static class SpellingList {
+        public int id;
+        public String name;
+        public int userId;
 
+        public SpellingList (int id, String name, int userId) {
+            this.id = id;
+            this.name = name;
+            this.userId = userId;
+        }
     }
 }
