@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">SpellTest</string>
-    <string name="title_activity_user_selection">User Selection</string>
+    <string name="title_activity_user_selection">Select a user</string>
     <string name="title_activity_word_list_chooser">Word List Chooser</string>
+    <string name="dialog_new_user">New User Details</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+
+
 </resources>
