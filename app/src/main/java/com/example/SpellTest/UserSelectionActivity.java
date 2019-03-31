@@ -14,9 +14,8 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import java.util.ArrayList;
 
-public class UserSelectionActivity extends AppCompatActivity {
+public class UserSelectionActivity extends AppCompatActivity  {
 
-    public static final String EXTRA_USER_ID = "com.example.spelltest.user_id";
 
     private RecyclerView mRecyclerView;
     private UserDataAdapter mAdapter;
@@ -41,7 +40,7 @@ public class UserSelectionActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(UserSelectionActivity.this, ListSelectionActivity.class);
-            intent.putExtra(EXTRA_USER_ID, mUser.id);
+            intent.putExtra(ListSelectionActivity.EXTRA_USER_ID, mUser.id);
             startActivity(intent);
         }
     }
@@ -53,7 +52,7 @@ public class UserSelectionActivity extends AppCompatActivity {
 
 
         public UserDataAdapter(Context context) {
-            mData = DataStore.getDataStore(context);
+            mData = DataStore.newInstance(context);
             refreshData();
         }
 

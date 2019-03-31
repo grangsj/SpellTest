@@ -22,12 +22,12 @@ public class WordListNameFragment extends AppCompatDialogFragment
 
     private static final String EXTRA_USER_ID = "com.example.spelltest.userId";
 
-    public static WordListNameFragment newInstance (int userId) {
+    public static WordListNameFragment newInstance (long userId) {
 
         WordListNameFragment fragment = new WordListNameFragment();
 
         Bundle args = new Bundle();
-        args.putInt(EXTRA_USER_ID, userId);
+        args.putLong(EXTRA_USER_ID, userId);
         fragment.setArguments(args);
 
         return fragment;
@@ -57,7 +57,7 @@ public class WordListNameFragment extends AppCompatDialogFragment
 
 
 
-        builder.setTitle(R.string.dialog_new_user);
+        builder.setTitle(R.string.dialog_word_list_name);
 
 
 
@@ -77,7 +77,7 @@ public class WordListNameFragment extends AppCompatDialogFragment
             Objects.SpellingList spellingList = new Objects.SpellingList(DataStore.DEFAULT_ID,
                     mListName.getText().toString(),
                     mUserId);
-            DataStore data = DataStore.getDataStore(getActivity().getApplicationContext());
+            DataStore data = DataStore.newInstance(getActivity().getApplicationContext());
             data.addSpellingList(spellingList);
 
             if (mListener != null) mListener.onDialogPositiveClick();

@@ -57,7 +57,7 @@ public class UserNameFragment extends AppCompatDialogFragment
         if (which == DialogInterface.BUTTON_POSITIVE) {
 
             Objects.User user = new Objects.User(DataStore.DEFAULT_ID, mFirstName.getText().toString(), mLastName.getText().toString());
-            DataStore data = DataStore.getDataStore(getActivity().getApplicationContext());
+            DataStore data = DataStore.newInstance(getActivity().getApplicationContext());
             data.addUser(user);
 
             if (mListener != null) mListener.onDialogPositiveClick();

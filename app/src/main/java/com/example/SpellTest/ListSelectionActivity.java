@@ -23,7 +23,7 @@ public class ListSelectionActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private ListSelectionActivity.ListDataAdapter mAdapter;
-    private int mUserId;
+    private long mUserId;
 
     private class ListViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
@@ -45,9 +45,8 @@ public class ListSelectionActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(ListSelectionActivity.this, TesterActivity.class);
-            intent.putExtra(EXTRA_USER_ID, mSpellingList.id);
+            intent.putExtra(TesterActivity.EXTRA_LIST_ID, mSpellingList.id);
             startActivity(intent);
-            finish();   //Closes this activity so we can't go back to it in the middle of the test.
         }
     }
 
@@ -58,7 +57,7 @@ public class ListSelectionActivity extends AppCompatActivity {
 
 
         public ListDataAdapter(Context context) {
-            mData = DataStore.getDataStore(context);
+            mData = DataStore.newInstance(context);
             refreshData();
         }
 
@@ -94,7 +93,7 @@ public class ListSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_word_list_chooser);
 
         //Get the user id (send from the UserSelectionActivity class)
-        mUserId = getIntent().getIntExtra(EXTRA_USER_ID, DataStore.DEFAULT_ID);
+        mUserId = getIntent().getLongExtra(EXTRA_USER_ID, DataStore.DEFAULT_ID);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_chooser_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

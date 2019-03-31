@@ -12,38 +12,6 @@ public class DatabaseSchema {
         }
     }
 
-    public static final class UserStatTable {
-        public static final String NAME = "user_stat";
-
-        public static final class Cols {
-            public static final String ID = "user_stat_id";
-            public static final String USER_ID = "user_id";
-            public static final String OVERALL_ACCURACY = "overall_accuracy";
-            public static final String TOTAL_TESTS_TAKEN = "total_tests_taken";
-        }
-    }
-
-    public static final class UserWordStatTable {
-        public static final String NAME = "user_word_stat";
-
-        public static final class Cols {
-            public static final String ID = "user_word_stat_id";
-            public static final String USER_STAT_ID = "user_stat_id";
-            public static final String WORD_STAT_ID = "word_stat_id";
-            public static final String USER_WORD_ACCURACY = "user_word_accuracy";
-        }
-    }
-
-    public static final class WordStatTable {
-        public static final String NAME = "word_stat";
-
-        public static final class Cols {
-            public static final String ID = "word_stat_id";
-            public static final String WORD_ID = "word_id";
-            public static final String OVERALL_ACCURACY = "overall_accuracy";
-        }
-    }
-
     public static final class WordTable {
         public static final String NAME = "word";
 
@@ -63,7 +31,7 @@ public class DatabaseSchema {
 
         public static final class Cols {
             public static final String ID = "word_stat_id";
-            public static final String DIFFICULTY = "difficulty";
+            public static final String DESCRIPTION = "description";
         }
     }
 
@@ -79,5 +47,54 @@ public class DatabaseSchema {
         }
     }
 
+    public static final class SpellingListStatTable {
+        public static final String NAME = "spellingListStats";
+
+        public static final class Cols {
+            public static final String ID = "spelling_list_stat_id";
+            public static final String LIST_ID = "spelling_list_id";
+            public static final String DATE = "date";
+            public static final String ELAPSED_TIME = "elapsed_time";
+            public static final String NUMBER_CORRECT = "numberCorrect";
+            public static final String NUMBER_INCORRECT = "numberIncorrect";
+
+        }
+    }
+
+
+
+    /**
+     public static final class UserStatTable {
+     public static final String NAME = "user_stat";
+
+     public static final class Cols {
+     public static final String ID = "user_stat_id";
+     public static final String USER_ID = "user_id";
+     public static final String OVERALL_ACCURACY = "overall_accuracy";
+     public static final String TOTAL_TESTS_TAKEN = "total_tests_taken";
+     }
+     }
+
+     public static final class UserWordStatTable {
+     public static final String NAME = "user_word_stat";
+
+     public static final class Cols {
+     public static final String ID = "user_word_stat_id";
+     public static final String USER_STAT_ID = "user_stat_id";
+     public static final String WORD_STAT_ID = "word_stat_id";
+     public static final String USER_WORD_ACCURACY = "user_word_accuracy";
+     }
+     }
+
+     public static final class WordStatTable {
+     public static final String NAME = "word_stat";
+
+     public static final class Cols {
+     public static final String ID = "word_stat_id";
+     public static final String WORD_ID = "word_id";
+     public static final String OVERALL_ACCURACY = "overall_accuracy";
+     }
+     }
+     **/
 
 }

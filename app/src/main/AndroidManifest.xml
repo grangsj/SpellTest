@@ -9,21 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.SpellTest.TestStatsActivity"/>
-        <activity android:name="com.example.SpellTest.TesterActivity" />
+        <activity android:name="com.example.SpellTest.TestStatsActivity"
+            android:label="@string/title_activity_testResultsActivity" />
+        <activity android:name="com.example.SpellTest.TesterActivity"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
+            android:label="@string/title_activity_testActivity"   />
         <activity android:name="com.example.SpellTest.WordListBuilderActivity" />
         <activity
             android:name="com.example.SpellTest.ListSelectionActivity"
-            android:label="@string/title_activity_word_list_chooser"
+            android:label="@string/title_activity_listSelectionActivity"
             android:parentActivityName="com.example.SpellTest.UserSelectionActivity"  >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.SpellTest.UserSelectionActivity" />
         </activity>
         <activity android:name="com.example.SpellTest.UserStatsActivity" />
         <activity
             android:name="com.example.SpellTest.UserSelectionActivity"
-            android:label="@string/title_activity_user_selection" />
+            android:label="@string/title_activity_userSelectionActivity" />
         <activity
             android:name="com.example.SpellTest.SplashScreenActivity"
             android:theme="@style/SplashTheme">
