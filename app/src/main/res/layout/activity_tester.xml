@@ -9,19 +9,34 @@
     <EditText
         android:id="@+id/test_activity_input"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
         android:padding="24dp"
-        android:textSize="24dp"
+        android:textSize="48dp"
+        android:hint="Enter word"
         android:inputType="textNoSuggestions|textVisiblePassword"
         android:cursorVisible="false"
         android:background="@null"
         android:gravity="center_horizontal|center_vertical"/>
 
+    <TextView
+        android:id="@+id/test_activity_correct_spelling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:textSize="24dp"
+        android:text="Correct Spelling"
+        android:visibility="gone"
+        android:background="@null"
+        android:gravity="center_horizontal|center_vertical"
+        app:layout_anchor="@id/test_activity_input"
+        app:layout_anchorGravity="bottom|right|end"
+        />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/say_word_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:src="@drawable/baseline_record_voice_over_white_24"
         app:layout_anchor="@id/test_activity_input"

@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.SpellTest.Objects;
 import com.example.database.DatabaseSchema.*;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -195,10 +194,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         wordValues.put(WordTable.Cols.SPELLING, "apple");
         sqLiteDatabase.insert(WordTable.NAME, null, wordValues);
 
-        /**
+
         wordValues.put(WordTable.Cols.SPELLING, "banana");
         sqLiteDatabase.insert(WordTable.NAME, null, wordValues);
 
+         /**
         wordValues.put(WordTable.Cols.SPELLING, "carrot");
         sqLiteDatabase.insert(WordTable.NAME, null, wordValues);
 

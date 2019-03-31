@@ -1,4 +1,4 @@
-package com.example.SpellTest;
+package com.example.spelltest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -100,7 +100,7 @@ public class UserSelectionActivity extends AppCompatActivity  {
                 UserNameFragment newFragment = new UserNameFragment();
                 newFragment.setDialogListener(new DialogListener() {
                     @Override
-                    public void onDialogPositiveClick() {
+                    public void onDialogPositiveClick(long id) {
                         mAdapter.refreshData();
                         mAdapter.notifyDataSetChanged();
                     }

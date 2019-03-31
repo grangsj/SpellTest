@@ -1,4 +1,4 @@
-package com.example.SpellTest;
+package com.example.spelltest;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -58,9 +58,9 @@ public class UserNameFragment extends AppCompatDialogFragment
 
             Objects.User user = new Objects.User(DataStore.DEFAULT_ID, mFirstName.getText().toString(), mLastName.getText().toString());
             DataStore data = DataStore.newInstance(getActivity().getApplicationContext());
-            data.addUser(user);
+            long userId = data.putUser(user);
 
-            if (mListener != null) mListener.onDialogPositiveClick();
+            if (mListener != null) mListener.onDialogPositiveClick(userId);
         }
 
     }

@@ -1,6 +1,4 @@
-package com.example.SpellTest;
-
-import java.util.Date;
+package com.example.spelltest;
 
 public class Objects {
     public static class User {
@@ -45,4 +43,19 @@ public class Objects {
             this.numberIncorrect = numberIncorrect;
         }
     }
+
+    public static class Word {
+        public long id;
+        public long list_id;
+        public String spelling;
+
+        public Word (long id, long list_id, String spelling){
+            this.id = id;
+            this.list_id = list_id;
+            this.spelling = spelling;
+        }
+
+    }
+
+
 }

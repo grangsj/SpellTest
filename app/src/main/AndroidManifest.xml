@@ -9,23 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.SpellTest.TestStatsActivity"
+        <activity android:name="com.example.spelltest.TestStatsActivity"
             android:label="@string/title_activity_testResultsActivity" />
-        <activity android:name="com.example.SpellTest.TesterActivity"
+        <activity android:name="com.example.spelltest.TesterActivity"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
             android:label="@string/title_activity_testActivity"   />
-        <activity android:name="com.example.SpellTest.WordListBuilderActivity" />
+        <activity android:name="com.example.spelltest.WordListBuilderActivity"
+            android:label="@string/title_activity_listBuilderActivity" />
         <activity
-            android:name="com.example.SpellTest.ListSelectionActivity"
-            android:label="@string/title_activity_listSelectionActivity"
-            android:parentActivityName="com.example.SpellTest.UserSelectionActivity"  >
+            android:name="com.example.spelltest.ListSelectionActivity"
+            android:label="@string/title_activity_listSelectionActivity"   >
         </activity>
-        <activity android:name="com.example.SpellTest.UserStatsActivity" />
+        <activity android:name="com.example.spelltest.UserStatsActivity" />
         <activity
-            android:name="com.example.SpellTest.UserSelectionActivity"
+            android:name="com.example.spelltest.UserSelectionActivity"
             android:label="@string/title_activity_userSelectionActivity" />
         <activity
-            android:name="com.example.SpellTest.SplashScreenActivity"
+            android:name="com.example.spelltest.SplashScreenActivity"
             android:theme="@style/SplashTheme">
 
 

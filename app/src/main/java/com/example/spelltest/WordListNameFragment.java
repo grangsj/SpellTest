@@ -1,4 +1,4 @@
-package com.example.SpellTest;
+package com.example.spelltest;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,7 +18,7 @@ public class WordListNameFragment extends AppCompatDialogFragment
 
     private TextView mListName;
     private DialogListener mListener;
-    private int mUserId;
+    private long mUserId;
 
     private static final String EXTRA_USER_ID = "com.example.spelltest.userId";
 
@@ -36,7 +36,7 @@ public class WordListNameFragment extends AppCompatDialogFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mUserId = getArguments().getInt(EXTRA_USER_ID);
+        mUserId = getArguments().getLong(EXTRA_USER_ID);
     }
 
     @NonNull
@@ -78,9 +78,9 @@ public class WordListNameFragment extends AppCompatDialogFragment
                     mListName.getText().toString(),
                     mUserId);
             DataStore data = DataStore.newInstance(getActivity().getApplicationContext());
-            data.addSpellingList(spellingList);
+            long listId = data.addSpellingList(spellingList);
 
-            if (mListener != null) mListener.onDialogPositiveClick();
+            if (mListener != null) mListener.onDialogPositiveClick(listId);
         }
 
     }

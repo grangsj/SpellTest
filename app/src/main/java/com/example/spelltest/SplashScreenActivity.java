@@ -1,13 +1,9 @@
-package com.example.SpellTest;
+package com.example.spelltest;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-
-import com.example.myapplication.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -23,7 +19,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
     };
 
-    private static final int SPLASH_SCREEN_DURATION = 1000;  //Duration of splash screen (in milliseconds).
+    private static final int SPLASH_SCREEN_DURATION = 10000;  //Duration of splash screen (in milliseconds).
 
     //Called when Splash screen is first displayed.  Note that the splash screen is built as a theme, so
     //we don't need a layout here - just going to show the theme.

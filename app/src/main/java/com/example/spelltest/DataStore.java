@@ -1,4 +1,4 @@
-package com.example.SpellTest;
+package com.example.spelltest;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -168,8 +168,12 @@ public class DataStore {
     }
 
 
-    public long addUser(Objects.User user) {
+    public long putUser(Objects.User user) {
         ContentValues values = new ContentValues();
+        if (user.id != DataStore.DEFAULT_ID){
+            values.put(UserTable.Cols.ID, user.id);
+        }
+
         values.put(UserTable.Cols.FIRST_NAME, user.firstName);
         values.put(UserTable.Cols.LAST_NAME, user.lastName);
 
@@ -184,10 +188,10 @@ public class DataStore {
         return mDataBase.insert(SpellingListTable.NAME, null, values);
     }
 
-    public ArrayList<String> getWords(long spellingListId){
+    public ArrayList<Objects.Word> getWords(long spellingListId){
 
         Log.i(TAG, "In GetWords method, pulling cursor...");
-        ArrayList<String> output = new ArrayList<>();
+        ArrayList<Objects.Word> output = new ArrayList<>();
         Cursor wordCursor = mDataBase.query(
 
                 DatabaseSchema.WordTable.NAME,
@@ -199,11 +203,21 @@ public class DataStore {
                 null
         );
 
+
         try{
             wordCursor.moveToFirst();
             while (!wordCursor.isAfterLast()){
-                int columnIndex = wordCursor.getColumnIndex(DatabaseSchema.WordTable.Cols.SPELLING);
-                output.add(wordCursor.getString(columnIndex));
+                int columnIndexId = wordCursor.getColumnIndex(DatabaseSchema.WordTable.Cols.ID);
+                int columnIndexSpelling = wordCursor.getColumnIndex(DatabaseSchema.WordTable.Cols.SPELLING);
+                int columnIndexListId = wordCursor.getColumnIndex(DatabaseSchema.WordTable.Cols.LIST_ID);
+
+                Objects.Word word = new Objects.Word(
+                        wordCursor.getLong(columnIndexId),
+                        wordCursor.getLong(columnIndexListId),
+                        wordCursor.getString(columnIndexSpelling)
+                );
+
+                output.add(word);
                 wordCursor.moveToNext();
             }
         }  finally {
@@ -274,6 +288,28 @@ public class DataStore {
         }
 
         return list;
+    }
+
+    public long putWord(Objects.Word word)  {
+        ContentValues values = new ContentValues();
+
+        if (word.id != DataStore.DEFAULT_ID) {
+            values.put(DatabaseSchema.WordTable.Cols.ID, word.id);
+        }
+
+        values.put(DatabaseSchema.WordTable.Cols.LIST_ID, word.list_id);
+        values.put(DatabaseSchema.WordTable.Cols.SPELLING, word.spelling);
+
+        long id = mDataBase.replace(DatabaseSchema.WordTable.NAME, null, values);
+
+        return id;
+    }
+
+    public void deleteWord(long wordId){
+        mDataBase.delete(
+                DatabaseSchema.WordTable.NAME,
+                DatabaseSchema.WordTable.Cols.ID + "=" + Long.toString(wordId),
+                null);
     }
 
 
