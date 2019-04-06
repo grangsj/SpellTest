@@ -1,3 +1,16 @@
+/**
+ * Filename:  WordListNameFragment.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents a dialog box through which the name of a specific spelling word
+ * list can be entered by the user.  It is called from the ListSelectionActivity class.
+ * Once a spelling list name is added, program control is handed off to the WordListBuilderActivity
+ * class through which new words can be added to the list. *
+ */
+
+
+
 package com.example.spelltest;
 
 import android.app.AlertDialog;
@@ -74,11 +87,11 @@ public class WordListNameFragment extends AppCompatDialogFragment
     public void onClick(DialogInterface dialog, int which) {
 
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            Objects.SpellingList spellingList = new Objects.SpellingList(DataStore.DEFAULT_ID,
+            Objects.SpellingList spellingList = new Objects.SpellingList(DataStore.NULL_ROW_ID,
                     mListName.getText().toString(),
                     mUserId);
             DataStore data = DataStore.newInstance(getActivity().getApplicationContext());
-            long listId = data.addSpellingList(spellingList);
+            long listId = data.putSpellingList(spellingList);
 
             if (mListener != null) mListener.onDialogPositiveClick(listId);
         }

@@ -1,3 +1,15 @@
+/**
+ * Filename:  Objects.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents POJO (plain old Java object) data structures for each of the
+ * main application data objects, such as users, spelling lists, and individual words.  All data
+ * transfer to / from the main application database occurs through objects instantiated from this
+ * class.
+ */
+
+
 package com.example.spelltest;
 
 public class Objects {

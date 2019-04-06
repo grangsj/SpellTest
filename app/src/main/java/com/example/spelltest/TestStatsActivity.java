@@ -1,3 +1,14 @@
+/**
+ * Filename:  TestStatsActivity.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents the screen by which the user can observe the overall results
+ * summary from a single spelling test.
+ */
+
+
+
 package com.example.spelltest;
 
 import android.content.Intent;
@@ -25,10 +36,10 @@ public class TestStatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_stats);
 
-        mStatId = getIntent().getLongExtra(EXTRA_TEST_STAT_ID, DataStore.DEFAULT_ID);
+        mStatId = getIntent().getLongExtra(EXTRA_TEST_STAT_ID, DataStore.NULL_ROW_ID);
         mData = DataStore.newInstance(this);
 
-        if (mStatId != DataStore.DEFAULT_ID) {
+        if (mStatId != DataStore.NULL_ROW_ID) {
             Objects.SpellingListStat stat = mData.getSpellingListStat(mStatId);
             TextView dateView = findViewById(R.id.activity_test_stat_test_date);
             TextView elapsedTimeView = findViewById(R.id.activity_test_stat_elapsed_time);

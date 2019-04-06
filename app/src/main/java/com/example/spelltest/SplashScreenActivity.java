@@ -1,3 +1,15 @@
+/**
+ * Filename:  SplashScreenActivity.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents the splash screen graphic for the application.  It appears on
+ * initial application startup and remains there for a short period of time before sending
+ * application control to the UserSelectionActivity class.
+ *
+ */
+
+
 package com.example.spelltest;
 
 import android.content.Intent;

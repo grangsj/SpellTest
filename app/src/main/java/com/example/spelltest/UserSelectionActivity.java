@@ -1,3 +1,16 @@
+/**
+ * Filename:  UserSelectionActivity.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents the user selection screen within the application.  The class
+ * provides a list of saved users of the application and allows the user to select a user name from
+ * the list.  Once a user name is selected, the class transfers application control to the
+ * ListSelectionActivity class.  The class also provides a way to add new users to the application.
+ *
+ */
+
+
 package com.example.spelltest;
 import android.content.Context;
 import android.content.Intent;

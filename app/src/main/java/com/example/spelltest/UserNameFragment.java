@@ -1,3 +1,16 @@
+/**
+ * Filename:  UserNameFragment.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents a dialog box through which the end user can add the name of a
+ * new user to the application.  It is called from the UserSelectionActivity class, when the
+ * class detects a request to add a new user.
+ *
+ */
+
+
+
 package com.example.spelltest;
 
 import android.app.AlertDialog;
@@ -56,7 +69,7 @@ public class UserNameFragment extends AppCompatDialogFragment
 
         if (which == DialogInterface.BUTTON_POSITIVE) {
 
-            Objects.User user = new Objects.User(DataStore.DEFAULT_ID, mFirstName.getText().toString(), mLastName.getText().toString());
+            Objects.User user = new Objects.User(DataStore.NULL_ROW_ID, mFirstName.getText().toString(), mLastName.getText().toString());
             DataStore data = DataStore.newInstance(getActivity().getApplicationContext());
             long userId = data.putUser(user);
 

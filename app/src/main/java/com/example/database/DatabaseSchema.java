@@ -1,3 +1,19 @@
+/**
+ *
+ * Filename:  DatabaseSchema.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents a list of static class variables that represent the application
+ * database’s table names and table columns.  This class is used by the DatabaseHelper and
+ * DataStore classes to perform data access operations into & out of the application database.
+ *
+ * Each public class within this class aligns with a table in the app database.  The classes have
+ * a static final class called "Cols" which includes the names of each column in the database.
+ *
+ */
+
+
 package com.example.database;
 
 public class DatabaseSchema {

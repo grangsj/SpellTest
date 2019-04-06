@@ -1,3 +1,15 @@
+/**
+ * Filename:  ListSelectionActivity.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents the word list selection screen for the application.  This
+ * class creates and displays a list of all spelling word lists created for a specific user.
+ * This class provides functionality to add new spelling word lists and edit existing lists.
+ */
+
+
+
 package com.example.spelltest;
 
 import android.content.Context;
@@ -110,7 +122,7 @@ public class ListSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_word_list_chooser);
 
         //Get the user id (send from the UserSelectionActivity class)
-        mUserId = getIntent().getLongExtra(EXTRA_USER_ID, DataStore.DEFAULT_ID);
+        mUserId = getIntent().getLongExtra(EXTRA_USER_ID, DataStore.NULL_ROW_ID);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_chooser_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

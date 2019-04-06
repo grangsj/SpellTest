@@ -20,7 +20,6 @@
             android:name="com.example.spelltest.ListSelectionActivity"
             android:label="@string/title_activity_listSelectionActivity"   >
         </activity>
-        <activity android:name="com.example.spelltest.UserStatsActivity" />
         <activity
             android:name="com.example.spelltest.UserSelectionActivity"
             android:label="@string/title_activity_userSelectionActivity" />

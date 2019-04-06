@@ -1,3 +1,16 @@
+/**
+ * Filename:  TesterActivity.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents the screen through which the spelling test is conducted.  The
+ * class will include a representation of a keyboard, along with an area into which the user can
+ * type in a spelling word.  The class will emit the audio representation of a word and will verify
+ * that a user’s entered spelling matches the spelling of that word stored in the application’s
+ * persistent storage.
+ */
+
+
 package com.example.spelltest;
 
 import android.app.AlertDialog;
@@ -30,7 +43,7 @@ public class TesterActivity extends AppCompatActivity {
     private static final String TAG = "TesterActivity";
     private static final int SHOW_WORD_RESULTS_DURATION = 3000;
 
-    private long mListId = DataStore.DEFAULT_ID;
+    private long mListId = DataStore.NULL_ROW_ID;
     private EditText mWordView;
     private TextView mCorrectWordSpellingView;
     private ArrayList<Objects.Word> mWords;
@@ -57,7 +70,7 @@ public class TesterActivity extends AppCompatActivity {
                 long endTime = System.currentTimeMillis();
 
                 Objects.SpellingListStat stat = new Objects.SpellingListStat(
-                        DataStore.DEFAULT_ID,
+                        DataStore.NULL_ROW_ID,
                         mListId,
                         System.currentTimeMillis(),
                         endTime - mStartTime,
@@ -83,7 +96,7 @@ public class TesterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tester);
 
-        mListId = getIntent().getLongExtra(this.EXTRA_LIST_ID, DataStore.DEFAULT_ID);
+        mListId = getIntent().getLongExtra(this.EXTRA_LIST_ID, DataStore.NULL_ROW_ID);
         DataStore data = DataStore.newInstance(this);
         mWords = data.getWords(mListId);
 

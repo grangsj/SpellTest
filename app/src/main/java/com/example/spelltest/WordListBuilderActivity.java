@@ -1,7 +1,17 @@
+/**
+ * Filename:  WordListBuilderActivity.java
+ * Author:  Team SpellTest
+ * Date:  05 April 2019
+ *
+ * Purpose:  This class represents a word entry screen for the application.  This allows users to
+ * build new spelling word lists or edit existing word lists.
+ *
+ */
+
+
 package com.example.spelltest;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -26,7 +36,7 @@ public class WordListBuilderActivity extends AppCompatActivity {
     private static final String EMPTY_STRING="";
     private Handler handler = new Handler();
 
-    private long mListId = DataStore.DEFAULT_ID;
+    private long mListId = DataStore.NULL_ROW_ID;
     private static final String TAG = "WordListBuilderActivity";
     private RecyclerView mRecyclerView;
     private WordDataAdapter mAdapter;
@@ -131,7 +141,7 @@ public class WordListBuilderActivity extends AppCompatActivity {
 
 
         //Get the list id (send from the ListSelectionActivity class)
-        mListId = getIntent().getLongExtra(EXTRA_LIST_ID, DataStore.DEFAULT_ID);
+        mListId = getIntent().getLongExtra(EXTRA_LIST_ID, DataStore.NULL_ROW_ID);
 
         mData = DataStore.newInstance(this);
 
@@ -146,7 +156,7 @@ public class WordListBuilderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Objects.Word word = new Objects.Word(
-                        DataStore.DEFAULT_ID,
+                        DataStore.NULL_ROW_ID,
                         mListId,
                         EMPTY_STRING
                 );
