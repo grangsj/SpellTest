@@ -19,42 +19,60 @@ import android.support.v7.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    //Timer variables - used to shut down splash screen when done.
-    private Handler handler = new Handler();
-    private Runnable timer = new Runnable(){
+    //Class variables
+    private static final int SPLASH_SCREEN_DURATION = 1000;  //Duration of splash screen (in milliseconds).
+
+    //Instantiate a Handler and Runnable object.  These are used to automatically start the next activity
+    //(ie the UserActivity) after a brief pause after app startup.
+    private Handler mHandler = new Handler();
+    private Runnable mTimer = new Runnable(){
         @Override
         //When fired, this Runnable fires an intent to show the next screen and kill this activity.
         public void run() {
+
+            //Create a new Intent to start the UserActivity.
             Intent i = new Intent(SplashScreenActivity.this, UserSelectionActivity.class);
+
+            //Start the activity.
             startActivity(i);
+
             finish();    //Prevents user from coming back to this screen via back button
         }
     };
 
-    private static final int SPLASH_SCREEN_DURATION = 10000;  //Duration of splash screen (in milliseconds).
 
-    //Called when Splash screen is first displayed.  Note that the splash screen is built as a theme, so
-    //we don't need a layout here - just going to show the theme.
+
+    //Called when
+
+    /**
+     * Method called when the Splash screen is first displayed.  Note that the splash screen is built
+     * as a theme, so we don't need a layout here - just going to show the theme.
+     * @param savedInstanceState is the Bundle for any saved state info (not used in this activity.)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Call the super class constructor.
         super.onCreate(savedInstanceState);
 
         //Wait for defined time, then issue a Runnable to shut down the splash screen.
-        handler.postDelayed(timer, SPLASH_SCREEN_DURATION);
+        mHandler.postDelayed(mTimer, SPLASH_SCREEN_DURATION);
     }
 
 
 
     /**
-     * Called when user leaves splash screen.  Added this method to shut down the Runnable if the user hits the
-     * back button while the splash screen is on - otherwise the Runnable will show the next screen even though
+     * Called when user leaves splash screen by hitting the back button.  Added this method to shut
+     * down the Runnable, otherwise the Runnable will show the next screen even though
      * the user asked to leave program.
      */
     @Override
     protected void onPause() {
 
         //Removes any Runnable instances in the Handler (ie, if the timer is still running!)
-        handler.removeCallbacks(timer);
+        mHandler.removeCallbacks(mTimer);
+
+        //Call the Super class constructor.
         super.onPause();
     }
 }
