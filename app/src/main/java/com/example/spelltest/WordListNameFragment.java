@@ -9,8 +9,6 @@
  * class through which new words can be added to the list. *
  */
 
-
-
 package com.example.spelltest;
 
 import android.app.AlertDialog;
@@ -20,6 +18,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -29,71 +28,119 @@ import com.example.myapplication.R;
 public class WordListNameFragment extends AppCompatDialogFragment
             implements DialogInterface.OnClickListener {
 
-    private TextView mListName;
-    private DialogListener mListener;
-    private long mUserId;
+    //Static class variables
+    private static long mUserId;                                //The id of the user creating the word list.
+    private static final String TAG = "WordListNameFragment";   //Tag used to help debug software
 
-    private static final String EXTRA_USER_ID = "com.example.spelltest.userId";
+    //Instance variables
+    private TextView mListName;             //TextView in which user enters spelling list name
+    private DialogListener mListener;       //Callback for listeners (when user clicks buttons) - typically a ListSelectionActivity
 
+    /**
+     * Public method to instantiate a new instance of this dialog box.  We use this instead of using
+     * a constructor or the normal "onCreate" override to ensure we get a userId as part of
+     * object creation.  (IN other words, this acts like a singleton class - only difference is that I can't
+     * make the constructor private because Android doesn't allow it.
+     *
+     * @param userId the ID of the user for whom the new list will be created.
+     * @return an instance of WordNameListFragment
+     */
     public static WordListNameFragment newInstance (long userId) {
 
+        //Create the new fragment
         WordListNameFragment fragment = new WordListNameFragment();
 
-        Bundle args = new Bundle();
-        args.putLong(EXTRA_USER_ID, userId);
-        fragment.setArguments(args);
+        //Save the userId.
+        mUserId = userId;
 
+        //Return the fragment.
         return fragment;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mUserId = getArguments().getLong(EXTRA_USER_ID);
-    }
-
+    /**
+     * Method called by Android to create the dialog box.  We will use this method to inflate the
+     * layout and set it up for use.  Note that the onClickListeners for the OK / cancel
+     * buttons are wired up in a different method.
+     *
+     * @param savedInstanceState a Bundle with saved state information (not used here)
+     * @return an instance of the Dialog class with the completed, wired up dialog box.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-
+        Log.i(TAG, "in onCreateDialog, userId = " + mUserId);
+        //Instantiate the Builder object to build the dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        //Inflate the dialog box from its layout, and attach it to the dialog using the Builder.
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_word_list, null);
-
         builder.setView(view);
+
+        //Save a link to the text box with the list name.
         mListName = view.findViewById(R.id.word_list_name);
 
+        //Add positive ("OK") and negative ("Cancel") buttons to the dialog box
         builder.setPositiveButton(android.R.string.ok, this);
         builder.setNegativeButton(android.R.string.cancel, this);
 
-
-
+        //Add a title to the dialog box
         builder.setTitle(R.string.dialog_word_list_name);
 
-
-
+        //Now that all elements of the dialog have been added, use the Builder to create the dialog and return it.
         AlertDialog dialog = builder.create();
-
         return dialog;
     }
 
+    /**
+     * Public method to allow calling classes to add themselves as a listener for clicks from this dialog.
+     * We only expect one listener for the dialog, so we'll only create space for a single listener callback.
+     * @param listener  a class that implements the DialogListener interface, that wants to receive callbacks
+     *                  when the buttons on the dialog are pressed.
+     */
     public void setDialogListener (DialogListener listener){
+
+        //Just save the listener for use later (in the onClickListener method).
         mListener = listener;
     }
 
+    /**
+     * Method called by Android whenever the dialog box buttons are clicked.  We use this method to
+     * create a new spelling list with the appropriate name, if the "OK" button on the dialog box
+     * is pressed.  Note that Android handles closing the dialog box if the OK or Cancel buttons are
+     * pressed, so we don't have to add additional code for that here.
+     *
+     * @param dialog a link to the dialog box from which the button was pressed.
+     * @param which the button that is pressed.
+     */
     @Override
     public void onClick(DialogInterface dialog, int which) {
 
+        //Add code if OK button is pressed (Android handles the "cancel" button)
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            Objects.SpellingList spellingList = new Objects.SpellingList(DataStore.NULL_ROW_ID,
-                    mListName.getText().toString(),
-                    mUserId);
-            DataStore data = DataStore.newInstance(getActivity().getApplicationContext());
-            long listId = data.putSpellingList(spellingList);
 
-            if (mListener != null) mListener.onDialogPositiveClick(listId);
+            //Get the list name from the text view, and trim any white space.
+            String listName = mListName.getText().toString().trim();
+
+            //Only proceed if the new list name isn't empty.
+            if (listName.length()>0) {
+
+                //Create a new spelling list object.
+                Objects.SpellingList spellingList = new Objects.SpellingList(DataStore.NULL_ROW_ID,
+                        listName,
+                        mUserId);
+
+                //Get a reference to the application datastore
+                DataStore data = DataStore.newInstance(getActivity().getApplicationContext());
+
+                //Add the spelling list to the database.
+                long listId = data.putSpellingList(spellingList);
+
+                //Call the listener for the button, to figure out what to do with the new list.
+                if (mListener != null) mListener.onDialogPositiveClick(listId);
+            }
+
         }
 
     }

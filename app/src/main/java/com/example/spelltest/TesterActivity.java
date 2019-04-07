@@ -30,38 +30,41 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.myapplication.R;
-
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
 public class TesterActivity extends AppCompatActivity {
 
-    public static final String EXTRA_LIST_ID = "com.example.spelltest.list_id";
-    private static final String TAG = "TesterActivity";
-    private static final int SHOW_WORD_RESULTS_DURATION = 3000;
+    //Class variables
+    public static final String EXTRA_LIST_ID = "com.example.spelltest.list_id"; //Extra tag for the list ID to be tested.
+    private static final String TAG = "TesterActivity";                         //Tag for debug logs on this class.
+    private static final int SHOW_WORD_RESULTS_DURATION = 3000;                 //Time (in ms) to display correct/incorrect info before moving to next word
 
-    private long mListId = DataStore.NULL_ROW_ID;
-    private EditText mWordView;
-    private TextView mCorrectWordSpellingView;
-    private ArrayList<Objects.Word> mWords;
-    private int mNumberCorrect = 0;
-    private int mNumberWrong = 0;
-    private Objects.Word mCurrentWord = null;
-    private Random mRandom = new Random();
-    private TextToSpeech mTextToSpeech = null;
-    private boolean mIsTtsInitialized = false;
-    private long mStartTime = 0L;
-    private AlertDialog mDialog;
+    //Instance variables
+    private long mListId = DataStore.NULL_ROW_ID;       //The id of the list we're testing on.
+    private EditText mWordView;                         //The input field in which the user enters the spelling of the word.
+    private TextView mCorrectWordSpellingView;          //Display field for correct spelling (normally hidden from user)
+    private ArrayList<Objects.Word> mWords;             //List of words remaining to be tested.
+    private int mNumberCorrect = 0;                     //Number of correct answers given in this test.
+    private int mNumberWrong = 0;                       //Number of incorrect answers given in this test.
+    private Objects.Word mCurrentWord = null;           //Word object for the word currently being tested.
+    private Random mRandom = new Random();              //Random number generator
+    private TextToSpeech mTextToSpeech = null;          //Reference to the Android Text-To-Sppech instance for the class
+    private boolean mIsTtsInitialized = false;          //Flag to determine if the TTS element has been initialized.
+    private long mStartTime = 0L;                       //Start time of the test
+    private AlertDialog mDialog;                        //Dialog box for when the user attempts to abort a test.
 
-    //Timer variables - change colors / view layout when handling input words
+    //Timer / handler, to allow screen to be reset after correct / incorrect results are shown.
     private Handler handler = new Handler();
     private Runnable timer = new Runnable(){
         @Override
         public void run() {
+            //Reset input field color
             mWordView.setTextColor(Color.BLACK);
+
+            //Hide the "correct spelling" view element (if showing - normally hidden unless user puts a wrong answer in)
             mCorrectWordSpellingView.setVisibility(View.GONE);
 
             if (mWords.size() > 0) {             //more words left
