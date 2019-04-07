@@ -428,6 +428,21 @@ public class DataStore {
         return list;
     }
 
+
+
+    /**
+     * Public method to delete a user from the database.
+     * @param userId the id of the word to be deleted.
+     */
+    public void deleteUser(long userId) {
+
+        //This line of code exectes the SQL query to delete that word (if it exists).
+        mDataBase.delete(
+                DatabaseSchema.UserTable.NAME,
+                DatabaseSchema.UserTable.Cols.ID + "=" + Long.toString(userId),
+                null);
+    }
+
     /**
      * Public method to delete a word from the database.
      * @param wordId the id of the word to be deleted.

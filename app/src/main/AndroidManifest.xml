@@ -13,6 +13,7 @@
             android:label="@string/title_activity_testResultsActivity" />
         <activity android:name="com.example.spelltest.TesterActivity"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_testActivity"   />
         <activity android:name="com.example.spelltest.WordListBuilderActivity"
             android:label="@string/title_activity_listBuilderActivity" />
