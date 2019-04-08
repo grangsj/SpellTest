@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/edit_list_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+        android:text="test"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"/>
+
+    <ImageView
+        android:id="@+id/edit_list_item_delete"
+        android:src="@drawable/baseline_delete_black_24"
+        android:clickable="true"
+        android:padding="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:gravity="center_vertical|center_horizontal"/>
+
+
+</LinearLayout>

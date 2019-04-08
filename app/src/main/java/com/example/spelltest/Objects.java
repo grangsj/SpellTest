@@ -13,7 +13,7 @@
 package com.example.spelltest;
 
 public class Objects {
-    public static class User {
+    public static class User{
 
         public long id;
         public String firstName;
@@ -24,6 +24,8 @@ public class Objects {
             this.firstName = firstName;
             this.lastName = lastName;
         }
+
+        public String toString(){return firstName + " " + lastName;}
     }
 
     public static class SpellingList {
@@ -36,6 +38,8 @@ public class Objects {
             this.name = name;
             this.userId = userId;
         }
+
+        public String toString(){return name;}
     }
 
     public static class SpellingListStat {
@@ -66,6 +70,8 @@ public class Objects {
             this.list_id = list_id;
             this.spelling = spelling;
         }
+
+        public String toString(){return spelling;}
 
     }
 

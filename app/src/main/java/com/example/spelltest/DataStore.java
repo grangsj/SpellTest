@@ -479,6 +479,7 @@ public class DataStore {
         values.put(UserTable.Cols.FIRST_NAME, user.firstName);
         values.put(UserTable.Cols.LAST_NAME, user.lastName);
 
+
         //Add the item to the database, and return the row id for the database.
         return mDataBase.replace(UserTable.NAME, null, values);
 
@@ -529,6 +530,8 @@ public class DataStore {
         //Add the remaining user items to the CV object.
         values.put(DatabaseSchema.WordTable.Cols.LIST_ID, word.list_id);
         values.put(DatabaseSchema.WordTable.Cols.SPELLING, word.spelling);
+
+        Log.i(TAG, "in putWord with id=" + word.id + ", spelling = " + word.spelling);
 
         //Add the item to the database, and return the row id for the spelling word
         return mDataBase.replace(DatabaseSchema.WordTable.NAME, null, values);
